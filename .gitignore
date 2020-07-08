@@ -22,3 +22,4 @@
 /.htaccess
 /.idea
 /.DS_Store
+.env
