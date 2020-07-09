@@ -31,8 +31,8 @@ app.prepare()
                 });
         });
 
-        server.get('*', (req, res) => {
-            return handle(req, res);
+        server.get('*', (req, response) => {
+            return handle(req, response);
         });
 
         server.listen(port, err => {
