@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "alias": "react-wp",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/products",
+      "dest": "/products"
+    },
+    {
+      "src": "/categories",
+      "dest": "/categories"
+    },
+    {
+      "src": "/product/(?<slug>[^/]+)$",
+      "dest": "/product?slug=$slug"
+    }
+  ]
+}

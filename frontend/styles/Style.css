@@ -7,3 +7,7 @@
 .product-container img {
 	max-width: 310px;
 }
+
+img	{
+	max-width: 100%;
+}

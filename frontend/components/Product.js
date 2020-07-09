@@ -1,22 +1,28 @@
 import React from "react";
+import Link from "next/link"
 
 const Product = (props) => {
 
     const {product} = props;
+    console.log(product)
     return (
-        <div className="card mb-3 mr-4">
-            <h3 className="card-header text-center">{product.name}</h3>
-            {product.images.length !== 0
-                ? <img src={product.images[0].src}
-                       alt="Product image"/>
-                : <img src='/images/products/product-1.jpg'
-                       alt="Product image"/>
-            }
-            <div className="card-body text-center">
-                <h6 className="card-subtitle mb-3">${product.price}</h6>
-                <a href="" className="btn btn-secondary">View</a>
+        <div className="col-lg-4">
+            <div className="card mb-3">
+                <h3 className="card-header text-center">{product.name}</h3>
+                <Link as={`/product?slug=${product.slug}-${product.productId}`} href={`/product?slug=${product.slug}-${product.productId}`}>
+                    <a>
+                        {product.image
+                            ? <img src={product.image.uri}
+                                   alt={product.image.title}/>
+                            : <img src='/images/products/product-1.jpg'
+                                   alt="Product image"/>
+                        }
+                    </a>
+                </Link>
+                <div className="card-body text-center">
+                    <h6 className="card-subtitle mb-3">{product.price}</h6>
+                </div>
             </div>
-
         </div>
     );
 }
