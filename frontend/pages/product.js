@@ -16,12 +16,12 @@ const PRODUCT_QUERY = gql`query($id: ID !){
         slug
         description
         name
-         ... on SimpleProduct{
+        ... on SimpleProduct{
             price
-          }
-          ... on VariableProduct{
-          price
-          }
+        }
+        ... on VariableProduct{
+            price
+        }
         image {
             uri
             title

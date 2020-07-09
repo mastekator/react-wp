@@ -1,12 +1,19 @@
+//React
+import React, {useContext} from "react";
+
+//App
 import Nav from "./Nav";
-import React from "react";
+import {AppContext} from "./context/AppContext";
 
 const Header = () => {
-	return (
-		<div>
-			<Nav/>
-		</div>
-	)
+
+    const [cart, setCart] = useContext(AppContext)
+
+    return (
+        <div>
+            <Nav/>
+        </div>
+    )
 };
 
 export default Header;

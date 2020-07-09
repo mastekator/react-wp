@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link"
+import AddToCartButton from "./cart/AddToCartButton";
 
 const Product = (props) => {
 
@@ -9,7 +10,8 @@ const Product = (props) => {
         <div className="col-lg-4">
             <div className="card mb-3">
                 <h3 className="card-header text-center">{product.name}</h3>
-                <Link as={`/product?slug=${product.slug}-${product.productId}`} href={`/product?slug=${product.slug}-${product.productId}`}>
+                <Link as={`/product?slug=${product.slug}-${product.productId}`}
+                      href={`/product?slug=${product.slug}-${product.productId}`}>
                     <a>
                         {product.image
                             ? <img src={product.image.uri}
@@ -21,6 +23,7 @@ const Product = (props) => {
                 </Link>
                 <div className="card-body text-center">
                     <h6 className="card-subtitle mb-3">{product.price}</h6>
+                    <AddToCartButton product={product}/>
                 </div>
             </div>
         </div>

@@ -1,4 +1,10 @@
+//React
 import React from "react";
+
+//App
+import CartIcon from "./cart/CartIcon";
+
+//Third-party
 import Link from 'next/link'
 
 const Nav = () => {
@@ -23,6 +29,7 @@ const Nav = () => {
                             </Link>
                         </li>
                     </ul>
+                    <CartIcon/>
                 </div>
             </div>
         </nav>
