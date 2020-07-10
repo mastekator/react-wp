@@ -6,6 +6,9 @@ import {AppContext} from "../context/AppContext";
 import CartItem from "./CartItem";
 import {removeItemFromCart} from "../../functions";
 
+//Third-party
+import Link from "next/link";
+
 const Cart = () => {
 
     const [cart, setCart] = useContext(AppContext);
@@ -60,6 +63,12 @@ const Cart = () => {
                                 </tr>
                                 </tbody>
                             </table>
+
+                            <Link href='/checkout'>
+                                <button className="btn btn-secondary">
+                                    Оформить заказ
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -10,27 +10,32 @@ import client from "../components/ApolloClient";
 import gql from 'graphql-tag'
 import {withRouter} from "next/router";
 
-
-const CATEGORIES_QUERY = gql`query{
-     categories(first: 10) {
+const PRODUCT_CATEGORIES_QUERY = gql`query{
+     productCategories(first: 10) {
       nodes {
-        name
-        link
         id
+        databaseId
+        link
+        name
         slug
+        image {
+            srcSet
+            title
+            sourceUrl
+        }
       }
     }
 }`
 
 const CategoriesPage = (props) => {
 
-    const {categories} = props;
+    const {productCategories} = props;
     return (
         <Layout>
             <div className="container">
                 <div className="row mt-5">
-                    {categories.length ? (
-                        categories.map(category => <Category key={category.id} category={category}/>)
+                    {productCategories.length ? (
+                        productCategories.map(productCategory => <Category key={productCategory.id} category={productCategory}/>)
                     ) : ''}
                 </div>
             </div>
@@ -39,10 +44,10 @@ const CategoriesPage = (props) => {
 };
 
 CategoriesPage.getInitialProps = async () => {
-    const result = await client.query({query: CATEGORIES_QUERY})
+    const result = await client.query({query: PRODUCT_CATEGORIES_QUERY})
 
     return {
-        categories: result.data.categories.nodes
+        productCategories: result.data.productCategories.nodes
     }
 };
 

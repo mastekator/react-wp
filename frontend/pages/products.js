@@ -10,7 +10,6 @@ import client from "../components/ApolloClient";
 import gql from 'graphql-tag'
 import {withRouter} from "next/router";
 
-
 const PRODUCTS_QUERY = gql`query{
     products(first: 20) {
         nodes {
