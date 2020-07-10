@@ -124,3 +124,31 @@ export const isProductInCart = (existingProductsInCart, productId) => {
 
     return existingProductsInCart.indexOf(newArray[0]);
 }
+
+export const removeItemFromCart = (productId) => {
+    let existingCart = localStorage.getItem('react-wp-cart')
+    existingCart = JSON.parse(existingCart)
+
+    if (1 === existingCart.products.length) {
+        localStorage.removeItem('react-wp-cart')
+        return null;
+    }
+
+    const productExistIndex = isProductInCart(existingCart.products, productId)
+
+    if (-1 < productExistIndex) {
+        const productToBeRemoved = existingCart.products[productExistIndex]
+        const qtyToBeRemovedFromTotal = productToBeRemoved.qty
+        const priceToBeDeductedFromTotal = productToBeRemoved.totalPrice
+
+        let updatedCart = existingCart;
+        updatedCart.products.splice(productExistIndex, 1)
+        updatedCart.totalProductsCount = updatedCart.totalProductsCount - qtyToBeRemovedFromTotal;
+        updatedCart.totalProductsPrice = updatedCart.totalProductsPrice - priceToBeDeductedFromTotal;
+
+        localStorage.setItem('react-wp-cart', JSON.stringify(updatedCart))
+        return updatedCart
+    } else {
+        return existingCart
+    }
+}
