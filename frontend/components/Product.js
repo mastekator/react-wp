@@ -14,7 +14,7 @@ const Product = (props) => {
                       href={`/product?slug=${product.slug}-${product.productId}`}>
                     <a>
                         {product.image
-                            ? <img src={product.image.uri}
+                            ? <img src={product.image.sourceUrl} srcSet={product.image.srcSet}
                                    alt={product.image.title}/>
                             : <img src='/images/products/product-1.jpg'
                                    alt="Product image"/>

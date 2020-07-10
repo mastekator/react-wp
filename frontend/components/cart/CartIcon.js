@@ -10,7 +10,7 @@ import Link from "next/link";
 const CartIcon = () => {
 
     const [cart, setCart] = useContext(AppContext);
-    const productsCount = (null !== cart && Object.keys(cart).length) ? cart.totalProductCount : '';
+    const productsCount = (null !== cart && Object.keys(cart).length) ? cart.totalProductsCount : '';
     const totalPrice = (null !== cart && Object.keys(cart).length) ? cart.totalProductsPrice : '';
 
     return (
