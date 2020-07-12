@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
     "@fortawesome/fontawesome-free": "5.13.0",
     "@now/next": "^2.6.9",
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
+    "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
     "bootstrap": "4.5.0",
     "classnames": "^2.2.6",
@@ -39,6 +41,8 @@
     "redux": "4.0.5",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
+    "uuid": "^8.2.0",
+    "validator": "^13.1.1",
     "woocommerce-api": "^1.5.0"
   },
   "scripts": {

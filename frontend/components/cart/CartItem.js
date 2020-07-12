@@ -2,61 +2,95 @@
 import React, {useState} from "react";
 
 //App
-import {updateCart} from "../../functions";
+import {getUpdatedItems} from "../../functions";
 
-const CartItem = ({item, setCart, handleRemoveProductClick}) => {
+//Third-party
+import {v4} from "uuid";
 
-    const [productCount, setProductCount] = useState(item.qty)
+const CartItem = ({
+                      item,
+                      products,
+                      updateCartProcessing,
+                      handleRemoveProductClick,
+                      updateCart,
+                  }) => {
 
-    const handleQtyChange = (e) => {
+    const [productCount, setProductCount] = useState(item.qty);
+
+    /*
+     * When user changes the qty from product input update the cart in localStorage
+     * Also update the cart in global context
+     *
+     * @param {Object} event event
+     *
+     * @return {void}
+     */
+    const handleQtyChange = (event, cartKey) => {
+
         if (process.browser) {
-            const newQty = e.target.value
-            setProductCount(newQty)
 
-            let existingCart = localStorage.getItem('react-wp-cart')
-            existingCart = JSON.parse(existingCart)
+            event.stopPropagation();
 
-            const updatedCart = updateCart(existingCart, item, false, newQty)
+            // If the previous update cart mutation request is still processing, then return.
+            if (updateCartProcessing) {
+                return;
+            }
 
-            setCart(updatedCart)
+            // If the user tries to delete the count of product, set that to 1 by default ( This will not allow him to reduce it less than zero )
+            const newQty = (event.target.value) ? parseInt(event.target.value) : 1;
+
+            // Set the new qty in state.
+            setProductCount(newQty);
+
+            if (products.length) {
+
+                const updatedItems = getUpdatedItems(products, newQty, cartKey);
+
+                updateCart({
+                    variables: {
+                        input: {
+                            clientMutationId: v4(),
+                            items: updatedItems
+                        }
+                    },
+                });
+            }
+
         }
-    }
+    };
+
 
     return (
-        <tr className="react-wp-cart-item">
-            <th className="react-wp-cart-element react-wp-cart-close">
-                <span className="react-wp-cart-close__icon" onClick={(e) => handleRemoveProductClick(e, item.productId)}>
-                   X
-                </span>
+        <tr className="woo-next-cart-item" key={item.productId}>
+            <th className="woo-next-cart-element woo-next-cart-el-close">
+                {/* Remove item */}
+                <span className="woo-next-cart-close-icon"
+                      onClick={(event) => handleRemoveProductClick(event, item.cartKey, products)}>
+					<i className="fa fa-times-circle"/>
+				</span>
             </th>
-            <td className="react-wp-cart-element">
-                {item.image
-                    ? <img src={item.image.sourceUrl} srcSet={item.image.srcSet}
-                           alt={item.image.title} width="64"/>
-                    : <img src='/images/products/product-1.jpg'
-                           alt="Product image" width="64"/>
-                }
+            <td className="woo-next-cart-element">
+                <img width="64" src={item.image.sourceUrl} srcSet={item.image.srcSet} alt={item.image.title}/>
             </td>
-            <td className="react-wp-cart-element">
-                {item.name}
-            </td>
-            <td className="react-wp-cart-element">
-                {item.price}
-            </td>
-            <td className="react-wp-cart-element">
+            <td className="woo-next-cart-element">{item.name}</td>
+            <td className="woo-next-cart-element">{('string' !== typeof item.price) ? item.price.toFixed(2) : item.price}</td>
+
+            {/* Qty Input */}
+            <td className="woo-next-cart-element woo-next-cart-qty">
                 <input
                     type="number"
                     min="1"
-                    className="react-wp-cart-item__input"
+                    data-cart-key={item.cartKey}
+                    className={`woo-next-cart-qty-input form-control ${updateCartProcessing ? 'woo-next-cart-disabled' : ''} `}
                     value={productCount}
-                    onChange={handleQtyChange}
+                    onChange={(event) => handleQtyChange(event, item.cartKey)}
                 />
+                {updateCartProcessing ?
+                    <img className="woo-next-cart-item-spinner" src="/cart-spinner.gif" alt="spinner"/> : ''}
             </td>
-            <td className="react-wp-cart-element">
-                {item.totalPrice}
-            </td>
+            <td className="woo-next-cart-element">{('string' !== typeof item.totalPrice) ? item.totalPrice.toFixed(2) : item.totalPrice}</td>
         </tr>
     )
-}
+};
 
-export default CartItem
+export default CartItem;

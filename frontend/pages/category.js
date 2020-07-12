@@ -5,47 +5,10 @@ import React from "react";
 import Layout from "../components/Layout";
 import client from "../components/ApolloClient";
 import Product from "../components/Product";
+import PRODUCT_BY_CATEGORY_ID from "../queries/product-by-category";
 
 //Third-party
 import {withRouter} from "next/router";
-import gql from "graphql-tag";
-
-const PRODUCT_BY_CATEGORY_ID = gql`query($id: ID !){
-     productCategory(id: $id, idType: DATABASE_ID) {
-        id
-        databaseId
-        link
-        name
-        slug
-        products {
-            edges{
-                node{
-                    id
-                    productId
-                    slug
-                    description
-                    image {
-                        uri
-                        title
-                        srcSet
-                        sourceUrl
-                    }
-                    ... on SimpleProduct{
-                         price
-                     }
-                    ... on VariableProduct{
-                         price
-                    }
-                }
-            }
-        }
-        image {
-            srcSet
-            title
-            sourceUrl
-        }
-      }
-}`
 
 const CategoryPage = (props) => {
 

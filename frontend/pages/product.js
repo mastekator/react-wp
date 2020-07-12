@@ -4,47 +4,10 @@ import React from "react";
 //App
 import Layout from "../components/Layout";
 import client from "../components/ApolloClient";
+import PRODUCT_BY_ID_QUERY from "../queries/product-by-id";
 
 //Third-party
 import {withRouter} from "next/router";
-import gql from "graphql-tag"
-
-const PRODUCT_QUERY = gql`query($id: ID !){
-    product(id: $id, idType: DATABASE_ID){
-        id
-        productId
-        slug
-        description
-        name
-        ... on SimpleProduct{
-            price
-            id
-        }
-        ... on VariableProduct{
-            price
-            id
-        }
-        ... on ExternalProduct{
-            price
-            id
-        }
-        ... on GroupProduct{
-            products{
-                nodes{
-                    ... on SimpleProduct {
-                        price
-                    }
-                }
-            }
-        }
-        image {
-            uri
-            title
-            srcSet
-            sourceUrl
-          }
-    }
-}`
 
 const ProductPage = props => {
 
@@ -78,7 +41,7 @@ ProductPage.getInitialProps = async (context) => {
     const id = slug ? parseInt(slug.split('-').pop()) : context.query.id
 
     const result = await client.query({
-        query: PRODUCT_QUERY,
+        query: PRODUCT_BY_ID_QUERY,
         variables: {id}
     })
 
