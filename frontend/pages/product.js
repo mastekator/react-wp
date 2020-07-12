@@ -18,9 +18,24 @@ const PRODUCT_QUERY = gql`query($id: ID !){
         name
         ... on SimpleProduct{
             price
+            id
         }
         ... on VariableProduct{
             price
+            id
+        }
+        ... on ExternalProduct{
+            price
+            id
+        }
+        ... on GroupProduct{
+            products{
+                nodes{
+                    ... on SimpleProduct {
+                        price
+                    }
+                }
+            }
         }
         image {
             uri
@@ -38,21 +53,21 @@ const ProductPage = props => {
     return (
         <Layout>
             <div className="container">
-               <div className="row mt-5">
-                   <div className="col-lg-4">
-                       {product.image
-                           ? <img src={product.image.uri}
-                                  alt={product.image.title}/>
-                           : <img src='/images/products/product-1.jpg'
-                                  alt="Product image"/>
-                       }
-                   </div>
-                   <div className="col-lg-8">
-                       <h1>{product.name}</h1>
-                       <p>{product.description}</p>
-                       <p>{product.price}</p>
-                   </div>
-               </div>
+                <div className="row mt-5">
+                    <div className="col-lg-4">
+                        {product.image
+                            ? <img src={product.image.uri}
+                                   alt={product.image.title}/>
+                            : <img src='/images/products/product-1.jpg'
+                                   alt="Product image"/>
+                        }
+                    </div>
+                    <div className="col-lg-8">
+                        <h1>{product.name}</h1>
+                        <p>{product.description}</p>
+                        <p>{product.price}</p>
+                    </div>
+                </div>
             </div>
         </Layout>
     )

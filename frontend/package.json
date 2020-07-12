@@ -8,6 +8,7 @@
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "bootstrap": "4.5.0",
     "classnames": "^2.2.6",
@@ -16,6 +17,7 @@
     "graphql-tag": "^2.10.4",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.4.4",
+    "node-fetch": "^2.6.0",
     "node-sass": "4.14.1",
     "nodemon": "^2.0.4",
     "photoswipe": "^4.1.3",
@@ -42,7 +44,8 @@
   "scripts": {
     "dev": "now dev",
     "start": "next start",
-    "build": "next build"
+    "build": "npm run build-fragment && next build",
+    "build-fragment": "node schemaQuery.js"
   },
   "eslintConfig": {
     "extends": "react-app"

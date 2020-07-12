@@ -20,9 +20,24 @@ const PRODUCTS_QUERY = gql`query{
           name
           ... on SimpleProduct{
             price
+            id
           }
           ... on VariableProduct{
-          price
+            price
+            id
+          }
+          ... on ExternalProduct{
+            price
+            id
+          }
+          ... on GroupProduct{
+             products{
+                nodes{
+                    ... on SimpleProduct {
+                        price
+                    }
+                }
+            }
           }
           image {
             uri
