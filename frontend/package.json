@@ -46,7 +46,7 @@
     "woocommerce-api": "^1.5.0"
   },
   "scripts": {
-    "dev": "now dev",
+    "dev": "nodemon server.js",
     "start": "next start",
     "build": "npm run build-fragment && next build",
     "build-fragment": "node schemaQuery.js"
