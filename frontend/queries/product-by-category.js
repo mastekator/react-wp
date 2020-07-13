@@ -11,6 +11,7 @@ const PRODUCT_BY_CATEGORY_ID = gql`query($id: ID !){
             edges{
                 node{
                     id
+                    name
                     productId
                     slug
                     description

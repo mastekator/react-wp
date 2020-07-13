@@ -12,7 +12,6 @@ import {withRouter} from "next/router";
 const ProductPage = props => {
 
     const {product} = props;
-    console.log(product)
     return (
         <Layout>
             <div className="container">
