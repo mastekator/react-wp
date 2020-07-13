@@ -101,7 +101,7 @@ export const updateCart = (existingCart, product, qtyToBeAdded, newQty = false) 
  * @param {Object} product Product
  * @param {Integer} qtyToBeAdded Quantity
  * @param {Integer} newQty New qty of the product (optional)
- * @return {*[]}
+ * @return {Object}
  */
 export const getUpdatedProducts = (existingProductsInCart, product, qtyToBeAdded, newQty = false) => {
 
@@ -194,8 +194,9 @@ export const removeItemFromCart = (productId) => {
 };
 
 /**
- * Returns cart data in the required format.
- * @param {String} data Cart data
+ *  * Returns cart data in the required format.
+ * @param data
+ * @return {{}|null}
  */
 export const getFormattedCart = (data) => {
 
@@ -282,7 +283,7 @@ export const createCheckoutData = (order) => {
 };
 
 /**
- * Get the updated items in the below format required for mutation input.
+ *  * Get the updated items in the below format required for mutation input.
  *
  * [
  * { "key": "33e75ff09dd601bbe6dd51039152189", "quantity": 1 },
@@ -290,7 +291,10 @@ export const createCheckoutData = (order) => {
  * ]
  *
  * Creates an array in above format with the newQty (updated Qty ).
- *
+ * @param products
+ * @param newQty
+ * @param cartKey
+ * @return {[]}
  */
 export const getUpdatedItems = (products, newQty, cartKey) => {
 
