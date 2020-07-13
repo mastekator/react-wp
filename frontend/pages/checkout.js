@@ -11,8 +11,6 @@ const CheckoutPage = props => {
 
     const {paymentMethods} = props
 
-    console.log(paymentMethods)
-
     return (
         <Layout>
             <div className="container mt-5">

@@ -7,8 +7,6 @@ import {AppContext} from "./context/AppContext";
 
 const Header = () => {
 
-    const [cart, setCart] = useContext(AppContext)
-
     return (
         <div>
             <Nav/>

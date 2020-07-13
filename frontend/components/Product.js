@@ -1,6 +1,11 @@
+//React
 import React from "react";
-import Link from "next/link"
+
+//App
 import AddToCartButton from "./cart/AddToCartButton";
+
+//Third-party
+import Link from "next/link"
 
 const Product = (props) => {
 
