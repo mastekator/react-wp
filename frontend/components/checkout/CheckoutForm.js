@@ -15,7 +15,7 @@ import validateAndSanitizeCheckoutForm from "../../validator/checkout";
 //Third-party
 import {useMutation, useQuery} from "@apollo/react-hooks";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({paymentMethods}) => {
 
     const initialState = {
         firstName: '',
@@ -44,7 +44,6 @@ const CheckoutForm = () => {
     const {loading, error, data, refetch} = useQuery(GET_CART, {
         notifyOnNetworkStatusChange: true,
         onCompleted: () => {
-            // console.warn( 'completed GET_CART' );
 
             // Update cart in the localStorage.
             const updatedCart = getFormattedCart(data);
@@ -61,7 +60,6 @@ const CheckoutForm = () => {
             input: orderData
         },
         onCompleted: () => {
-            // console.warn( 'completed CHECKOUT_MUTATION' );
             refetch();
         },
         onError: (error) => {
@@ -134,7 +132,8 @@ const CheckoutForm = () => {
                             <YourOrder cart={cart}/>
 
                             {/*Payment*/}
-                            <PaymentModes input={input} handleOnChange={handleOnChange}/>
+                            <PaymentModes paymentMethods={paymentMethods} input={input}
+                                          handleOnChange={handleOnChange}/>
                             <div className="woo-next-place-order-btn-wrap mt-5">
                                 <button className="btn woo-next-large-black-btn woo-next-place-order-btn btn-secondary"
                                         type="submit">
