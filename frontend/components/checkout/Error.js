@@ -1,3 +1,6 @@
+//React
+import React from "react";
+
 const Error = ( { errors, fieldName } ) => {
 
 	return(

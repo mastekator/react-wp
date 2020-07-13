@@ -1,6 +1,9 @@
-import validator from 'validator';
+//app
 import isEmpty from './isEmpty';
 import config from '../client-config';
+
+//Third-party
+import validator from 'validator';
 
 
 const validateAndSanitizeCheckoutForm = (data) => {
@@ -49,23 +52,23 @@ const validateAndSanitizeCheckoutForm = (data) => {
          * Check for error and if there is no error then sanitize data.
          */
         if (!validator.isLength(data[fieldName], {min, max})) {
-            errors[fieldName] = `${errorContent} must be ${min} to ${max} characters`;
+            errors[fieldName] = `${errorContent} должно содержать от ${min} до ${max} символов`;
         }
 
         if ('email' === type && !validator.isEmail(data[fieldName])) {
-            errors[fieldName] = `${errorContent} is not valid`;
+            errors[fieldName] = `${errorContent} некорректно`;
         }
 
         if ('phone' === type && !validator.isMobilePhone(data[fieldName])) {
-            errors[fieldName] = `${errorContent} is not valid`;
+            errors[fieldName] = `${errorContent} некорректно`;
         }
 
         if ('postcode' === type && postCodeLocale && !validator.isPostalCode(data[fieldName], postCodeLocale)) {
-            errors[fieldName] = `${errorContent} is not valid`;
+            errors[fieldName] = `${errorContent} некорректно`;
         }
 
         if (required && validator.isEmpty(data[fieldName])) {
-            errors[fieldName] = `${errorContent} is required`;
+            errors[fieldName] = `${errorContent} обязательно`;
         }
 
 
@@ -78,22 +81,22 @@ const validateAndSanitizeCheckoutForm = (data) => {
 
     };
 
-    addErrorAndSanitizedData('firstName', 'First name', 2, 35, 'string', true);
-    addErrorAndSanitizedData('lastName', 'Last name', 2, 35, 'string', true);
-    addErrorAndSanitizedData('company', 'Company Name', 0, 35, 'string', false);
-    addErrorAndSanitizedData('country', 'Country name', 2, 55, 'string', true);
-    addErrorAndSanitizedData('address1', 'Street address line 1', 20, 100, 'string', true);
+    addErrorAndSanitizedData('firstName', 'Поле имя', 2, 35, 'string', true);
+    addErrorAndSanitizedData('lastName', 'Поле фамилия', 2, 35, 'string', true);
+    addErrorAndSanitizedData('company', 'Поле название компании', 0, 35, 'string', false);
+    addErrorAndSanitizedData('country', 'Поле страна', 2, 55, 'string', true);
+    addErrorAndSanitizedData('address1', 'Поле адрес', 10, 100, 'string', true);
     addErrorAndSanitizedData('address2', '', 0, 254, 'string', false);
-    addErrorAndSanitizedData('city', 'City field', 3, 25, 'string', true);
-    addErrorAndSanitizedData('state', 'State/County', 0, 254, 'string', true);
-    addErrorAndSanitizedData('postcode', 'Post code', 2, 9, 'postcode', true);
-    addErrorAndSanitizedData('phone', 'Phone number', 10, 15, 'phone', true);
-    addErrorAndSanitizedData('email', 'Email', 11, 254, 'email', true);
+    addErrorAndSanitizedData('city', 'Поле город', 3, 25, 'string', true);
+    addErrorAndSanitizedData('state', 'Поле область', 0, 254, 'string', true);
+    addErrorAndSanitizedData('postcode', 'Поле индекс', 2, 9, 'postcode', true);
+    addErrorAndSanitizedData('phone', 'Поле номер телефона', 10, 15, 'phone', true);
+    addErrorAndSanitizedData('email', 'Поле email', 11, 254, 'email', true);
 
     // The data.createAccount is a boolean value.
     sanitizedData.createAccount = data.createAccount;
     addErrorAndSanitizedData('orderNotes', '', 0, 254, 'string', false);
-    addErrorAndSanitizedData('paymentMethod', 'Payment mode field', 2, 50, 'string', true);
+    addErrorAndSanitizedData('paymentMethod', 'Поле метод платежа', 2, 50, 'string', true);
 
 
     return {

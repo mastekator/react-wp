@@ -35,25 +35,6 @@ const CheckoutForm = () => {
         errors: null
     };
 
-    // Use this for testing purposes, so you dont have to fill the checkout form over an over again.
-    // const initialState = {
-    // 	firstName: 'Imran',
-    // 	lastName: 'Sayed',
-    // 	address1: '109 Hills Road Valley',
-    // 	address2: 'Station Road',
-    // 	city: 'Pune',
-    // 	state: 'Maharastra',
-    // 	country: 'ID',
-    // 	postcode: '400298',
-    // 	phone: '9959338989',
-    // 	email: 'imran@gmail.com',
-    // 	company: 'Tech',
-    // 	createAccount: false,
-    // 	orderNotes: '',
-    // 	paymentMethod: 'cod',
-    // 	errors: null
-    // };
-
     const [cart, setCart] = useContext(AppContext);
     const [input, setInput] = useState(initialState);
     const [orderData, setOrderData] = useState(null);

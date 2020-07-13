@@ -1,11 +1,16 @@
-import {useState, useContext} from "react";
-import {useQuery, useMutation} from "@apollo/react-hooks";
+//React
+import React, {useState, useContext} from "react";
+
+//App
 import {AppContext} from "../context/AppContext";
-import {addFirstProduct, getFormattedCart, updateCart} from "../../functions";
-import Link from "next/link";
-import {v4} from 'uuid';
+import {getFormattedCart} from "../../functions";
 import GET_CART from "../../queries/get-cart";
 import ADD_TO_CART from "../../mutations/add-to-cart";
+
+//Third-party
+import {useQuery, useMutation} from "@apollo/react-hooks";
+import Link from "next/link";
+import {v4} from 'uuid';
 
 const AddToCart = (props) => {
 

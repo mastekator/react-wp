@@ -12,15 +12,15 @@ import {withRouter} from "next/router";
 
 const CategoryPage = (props) => {
 
-    const {categoryName, products} = props
+    const {categoryName, productsByCategory} = props
 
     return (
         <Layout>
             <div className="container">
                 {categoryName ? <h3>{categoryName}</h3> : ''}
                 <div className="row">
-                    {undefined !== products && products.length ? (
-                        products.map(product => <Product key={product.node.id} product={product.node}/>)
+                    {undefined !== productsByCategory && productsByCategory.length ? (
+                        productsByCategory.map(product => <Product key={product.node.id} product={product.node}/>)
                     ) : ''}
                 </div>
             </div>
@@ -38,7 +38,7 @@ CategoryPage.getInitialProps = async (context) => {
 
     return {
         categoryName: result.data.productCategory.name,
-        products: result.data.productCategory.products.edges
+        productsByCategory: result.data.productCategory.products.edges
     }
 };
 

@@ -5,7 +5,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import Product from "../components/Product";
 import client from "../components/ApolloClient";
-import PRODUCTS_QUERY from "../queries/get-product";
+import PRODUCTS_QUERY from "../queries/get-products";
 
 //Third-party
 import {withRouter} from "next/router";
@@ -17,7 +17,7 @@ const ProductsPage = (props) => {
         <Layout>
             <div className="container">
                 <div className="row mt-5">
-                    {products.length ? (
+                    {undefined !== products && products.length ? (
                         products.map(product => <Product key={product.id} product={product}/>)
                     ) : ''}
                 </div>

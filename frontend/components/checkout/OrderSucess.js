@@ -1,3 +1,6 @@
+//React
+import React from "react";
+
 const OrderSuccess = ( props ) => {
 
 	const { response } = props;
@@ -8,14 +11,16 @@ const OrderSuccess = ( props ) => {
 
 	const responseData = response.checkout;
 
-	window.location.href = responseData.redirect;
+	console.log(response)
+
+	// window.location.href = responseData.redirect;
 
 	return (
-		<div className="container">
+		<div>
 			{ 'success' === responseData.result ? (
 				<div>
-					<h2>Order no: { responseData.order.orderId } </h2>
-					<p>Status : { responseData.order.status }</p>
+					<h2>Номер заказа: { responseData.order.orderId } </h2>
+					<p>Статус : { responseData.order.status }</p>
 				</div>
 			): ''}
 		</div>

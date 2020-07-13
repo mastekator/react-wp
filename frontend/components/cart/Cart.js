@@ -1,5 +1,5 @@
 //React
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState} from 'react'
 
 //App
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import GET_CART from "../../queries/get-cart";
 import CLEAR_CART_MUTATION from "../../mutations/clear-cart";
 
 //Third-party
-import {getFormattedCart, getUpdatedItems, removeItemFromCart} from '../../functions';
+import {getFormattedCart, getUpdatedItems} from '../../functions';
 import {v4} from 'uuid';
 import {useMutation, useQuery} from "@apollo/react-hooks";
 

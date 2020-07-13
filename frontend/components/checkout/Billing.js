@@ -1,4 +1,7 @@
+//React
 import React from 'react';
+
+//App
 import countryList from './country-list';
 import Error from "./Error";
 

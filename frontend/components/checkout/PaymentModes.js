@@ -1,3 +1,7 @@
+//React
+import React from "react";
+
+//App
 import Error from "./Error";
 
 const PaymentModes = ( { input, handleOnChange } ) => {
