@@ -26,7 +26,7 @@ const ProductPage = props => {
                     </div>
                     <div className="col-lg-8">
                         <h1>{product.name}</h1>
-                        <p>{product.description}</p>
+                        <div>{product.description}</div>
                         <p>{product.price}</p>
                     </div>
                 </div>

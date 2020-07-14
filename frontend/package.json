@@ -47,8 +47,6 @@
   },
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "next start",
-    "build": "npm run build-fragment && next build",
     "build-fragment": "node schemaQuery.js"
   },
   "eslintConfig": {
