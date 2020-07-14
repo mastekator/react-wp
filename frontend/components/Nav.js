@@ -24,13 +24,18 @@ const Nav = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
+                            <Link href="/posts-categories">
+                                <a className="nav-link">Категории постов</a>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
                             <Link href="/products">
                                 <a className="nav-link">Товары</a>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link href="/categories">
-                                <a className="nav-link">Категории</a>
+                                <a className="nav-link">Категории товаров</a>
                             </Link>
                         </li>
                     </ul>

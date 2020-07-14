@@ -6,7 +6,7 @@ const POST_BY_ID_QUERY = gql` query Post($id: ID!) {
 	  databaseId
 	  title
 	  slug
-	  content
+	  content(format: RENDERED)
 	}
   }
 `;

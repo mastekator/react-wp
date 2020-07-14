@@ -14,6 +14,10 @@ app.prepare()
             return app.render(req, res, '/category', {slug: req.params.slug})
         })
 
+        server.get('/post-category/:slug', (req, res) => {
+            return app.render(req, res, '/post-category', {slug: req.params.slug})
+        })
+
         server.get('/product/:slug', (req, res) => {
             return app.render(req, res, '/product', {slug: req.params.slug})
         })
