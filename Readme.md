@@ -9,14 +9,14 @@ docker-compose up -d
 - >https://github.com/wp-graphql/wp-graphql
 - >https://github.com/wp-graphql/wp-graphql-woocommerce
 - >https://github.com/wp-graphql/wp-graphiql
+- >https://github.com/funkhaus/wp-graphql-cors
+- >https://github.com/wp-graphql/wp-graphql-acf
 
 ## htaccess
 
-- RewriteCond %{HTTP:Authorization} ^(.*)
-- RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
 - SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
  
 ## wp-config
 
-- define('JWT_AUTH_SECRET_KEY', 'your-top-secret-key');
-- define('JWT_AUTH_CORS_ENABLE', true);
+- define( 'GRAPHQL_JWT_AUTH_SECRET_KEY', 'your-secret-token' )
+- define( 'GRAPHQL_DEBUG', true );
